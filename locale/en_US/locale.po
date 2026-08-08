@@ -1,0 +1,5 @@
+msgid "plugins.generic.editorialMastheadProfiles.displayName"
+msgstr "Editorial Masthead Profiles"
+
+msgid "plugins.generic.editorialMastheadProfiles.description"
+msgstr "Public editor profile pages for OJS masthead users."
