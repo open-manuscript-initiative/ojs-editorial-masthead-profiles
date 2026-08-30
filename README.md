@@ -33,9 +33,15 @@ Once enabled, the plugin registers the `editorProfile` page handler. The route u
 
 The requested user must belong to the current journal context and must currently be opted in to an editorial-masthead user group. Requests for other users return 404.
 
-### Integration note
+The plugin also replaces the standard OJS Editorial Masthead frontend template with a plugin-owned copy that tracks the upstream OJS 3.5 structure and adds profile links around current masthead member names. No journal-specific theme or core-template modification is required for the standard masthead-to-profile flow.
 
-The current release provides the public profile route but does **not** modify OJS core templates to turn names on the standard Editorial Masthead page into profile links. A theme or template integration must link a masthead member to the plugin route. This limitation is intentionally documented rather than assuming a site-specific theme customization.
+Peer reviewers listed separately by OJS are not linked to editor profiles unless they are also current masthead members, because the public profile route deliberately validates current masthead membership.
+
+### Theme compatibility
+
+The standalone integration targets the standard OJS 3.5 Editorial Masthead template contract (`mastheadRoles`, `mastheadUsers`, `reviewers`, and related variables). Themes that only style the standard markup should continue to work because the plugin preserves the upstream page structure and CSS class names.
+
+A theme that fully replaces the Editorial Masthead template with custom markup may require compatibility testing. While this plugin is enabled, its masthead template is selected at display time so that profile links work without installation-specific theme edits.
 
 ## Portability
 
@@ -79,7 +85,7 @@ See PKP's Plugin Guide and Plugin Gallery documentation before submitting a rele
 
 ## Reporting issues
 
-Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, database engine/version, plugin version, relevant error message or log excerpt, and steps to reproduce the problem.
+Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, database engine/version, plugin version, active theme, relevant error message or log excerpt, and steps to reproduce the problem.
 
 ## License
 
