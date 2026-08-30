@@ -6,11 +6,14 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 ## [Unreleased]
 
+## [1.0.7.0] - 2026-08-30
+
 ### Changed
 
 - Replaced journal-specific Hungarian template labels with locale keys.
 - Replaced journal-specific colour styling with neutral, theme-compatible presentation.
 - Documented standalone portability and the current masthead-link integration limitation.
+- Added portability checks against installation-specific identifiers and hard-coded template text.
 - Added an AI assistance disclosure and human-review responsibility statement.
 
 ## [1.0.6.0] - 2026-08-30
