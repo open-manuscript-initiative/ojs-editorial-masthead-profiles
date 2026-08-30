@@ -13,6 +13,7 @@ The format is based on Keep a Changelog, and releases use the version declared i
 - Replaced journal-specific Hungarian template labels with locale keys.
 - Replaced journal-specific colour styling with neutral, theme-compatible presentation.
 - Documented standalone portability and the current masthead-link integration limitation.
+- Documented OJS 3.5 Editorial Masthead compatibility caveats.
 - Added portability checks against installation-specific identifiers and hard-coded template text.
 - Added an AI assistance disclosure and human-review responsibility statement.
 
