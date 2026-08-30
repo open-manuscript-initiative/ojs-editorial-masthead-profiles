@@ -57,6 +57,8 @@ The plugin includes locale resources for English (`en_US`), German (`de_DE`), an
 
 Generative AI assistance has been used in development and maintenance. See `AI_DISCLOSURE.md` for the disclosure and human-review responsibility statement.
 
+PKP's public discussion in 2026 states that it did not yet have a settled general policy for AI contributions. This repository therefore discloses AI assistance proactively and keeps human maintainers responsible for every submitted change and release.
+
 ## Development and releases
 
 The plugin follows the standard OJS generic-plugin layout and declares its metadata in `version.xml`.
