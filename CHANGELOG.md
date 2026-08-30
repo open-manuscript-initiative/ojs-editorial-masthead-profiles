@@ -16,6 +16,7 @@ The format is based on Keep a Changelog, and releases use the version declared i
 - Documented OJS 3.5 Editorial Masthead compatibility caveats.
 - Added portability checks against installation-specific identifiers and hard-coded template text.
 - Added an AI assistance disclosure and human-review responsibility statement.
+- Documented the current status of PKP's public discussion on AI contributions.
 
 ## [1.0.6.0] - 2026-08-30
 
