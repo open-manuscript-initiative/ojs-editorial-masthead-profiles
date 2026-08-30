@@ -29,11 +29,29 @@ The directory name must be `editorialMastheadProfiles`.
 
 ## Usage
 
-Once enabled, the plugin registers the `editorProfile` page handler. Editorial masthead links can use this route to display a public profile for the selected editorial team member.
+Once enabled, the plugin registers the `editorProfile` page handler. A profile URL has the form `/{journalPath}/{locale}/editorProfile/view/{userId}` (routing details may vary with URL rewriting).
+
+The requested user must belong to the current journal context and must currently be opted in to an editorial-masthead user group. Requests for other users return 404.
+
+### Integration note
+
+The current release provides the public profile route but does **not** modify OJS core templates to turn names on the standard Editorial Masthead page into profile links. A theme or template integration must link a masthead member to the plugin route. This limitation is intentionally documented rather than assuming a site-specific theme customization.
+
+## Portability
+
+The plugin does not contain a journal ID, journal path, hostname, database credentials, or installation-specific user IDs. It resolves the current OJS context at request time and scopes masthead membership to that context.
+
+The profile presentation uses neutral styling and localized interface strings so it does not depend on the colours or language of a particular journal.
+
+Database access uses Laravel's query builder rather than database-specific SQL. Nevertheless, release compatibility should be verified on supported OJS/database combinations before a broader compatibility claim is made.
 
 ## Localization
 
 The plugin includes locale resources for English (`en_US`), German (`de_DE`), and Hungarian (`hu`). Contributions for additional OJS locales are welcome.
+
+## AI assistance disclosure
+
+Generative AI assistance has been used in development and maintenance. See `AI_DISCLOSURE.md` for the disclosure and human-review responsibility statement.
 
 ## Development and releases
 
@@ -55,7 +73,7 @@ See PKP's Plugin Guide and Plugin Gallery documentation before submitting a rele
 
 ## Reporting issues
 
-Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, plugin version, relevant error message or log excerpt, and steps to reproduce the problem.
+Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, database engine/version, plugin version, relevant error message or log excerpt, and steps to reproduce the problem.
 
 ## License
 
