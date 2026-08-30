@@ -3,8 +3,8 @@
 <version>
   <application>editorialMastheadProfiles</application>
   <type>plugins.generic</type>
-  <release>1.0.5.0</release>
-  <date>2026-06-15</date>
+  <release>1.0.6.0</release>
+  <date>2026-08-30</date>
   <lazy-load>1</lazy-load>
   <class>EditorialMastheadProfilesPlugin</class>
 </version>
