@@ -36,6 +36,22 @@ jobs:
           test -f CHANGELOG.md
           test -f CONTRIBUTING.md
           test -f SECURITY.md
+          test -f AI_DISCLOSURE.md
           test -f version.xml
           test -f index.php
           test -f EditorialMastheadProfilesPlugin.php
+
+      - name: Reject installation-specific identifiers
+        run: |
+          if grep -RInE 'egyhaztortenetiszemle|openmanuscript\.org|journal[_ -]?id[^0-9]*=[^0-9]*[0-9]+' \
+              --include='*.php' --include='*.tpl' --include='*.js' --include='*.css' .; then
+            echo 'Installation-specific identifier found in distributable code.' >&2
+            exit 1
+          fi
+
+      - name: Reject hard-coded Hungarian UI text in templates
+        run: |
+          if grep -RInE 'Szerkesztői gárda|Weboldal|Bemutatkozás' --include='*.tpl' templates; then
+            echo 'User-facing template text must use locale keys.' >&2
+            exit 1
+          fi
