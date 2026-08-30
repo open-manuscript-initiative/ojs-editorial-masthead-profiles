@@ -1,5 +1,14 @@
 msgid "plugins.generic.editorialMastheadProfiles.displayName"
-msgstr "Editorial Masthead Profiles"
+msgstr "Profile des Redaktionsteams"
 
 msgid "plugins.generic.editorialMastheadProfiles.description"
-msgstr "Öffentliche Redaktionsprofilseiten für OJS-Masthead-Benutzer."
+msgstr "Fügt öffentliche Profilseiten für Mitglieder des Redaktionsteams hinzu."
+
+msgid "plugins.generic.editorialMastheadProfiles.backToMasthead"
+msgstr "Redaktionsteam"
+
+msgid "plugins.generic.editorialMastheadProfiles.website"
+msgstr "Webseite"
+
+msgid "plugins.generic.editorialMastheadProfiles.biography"
+msgstr "Biografie"

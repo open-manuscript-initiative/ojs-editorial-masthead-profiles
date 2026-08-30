@@ -1,5 +1,14 @@
 msgid "plugins.generic.editorialMastheadProfiles.displayName"
-msgstr "Editorial Masthead Profiles"
+msgstr "Szerkesztői profilok"
 
 msgid "plugins.generic.editorialMastheadProfiles.description"
-msgstr "Nyilvános szerkesztői profiloldalak az OJS masthead felhasználóihoz."
+msgstr "Nyilvános profiloldalakat ad a szerkesztői gárda tagjaihoz."
+
+msgid "plugins.generic.editorialMastheadProfiles.backToMasthead"
+msgstr "Szerkesztői gárda"
+
+msgid "plugins.generic.editorialMastheadProfiles.website"
+msgstr "Weboldal"
+
+msgid "plugins.generic.editorialMastheadProfiles.biography"
+msgstr "Bemutatkozás"

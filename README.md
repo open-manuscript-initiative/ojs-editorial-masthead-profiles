@@ -29,11 +29,41 @@ The directory name must be `editorialMastheadProfiles`.
 
 ## Usage
 
-Once enabled, the plugin registers the `editorProfile` page handler. Editorial masthead links can use this route to display a public profile for the selected editorial team member.
+Once enabled, the plugin registers the `editorProfile` page handler. The route uses the current journal context plus the numeric user ID; exact URL appearance depends on the OJS URL and rewrite configuration.
+
+The requested user must belong to the current journal context and must currently be opted in to an editorial-masthead user group. Requests for other users return 404.
+
+The plugin also replaces the standard OJS Editorial Masthead frontend template with a plugin-owned copy that tracks the upstream OJS 3.5 structure and adds profile links around current masthead member names. No journal-specific theme or core-template modification is required for the standard masthead-to-profile flow.
+
+Peer reviewers listed separately by OJS are not linked to editor profiles unless they are also current masthead members, because the public profile route deliberately validates current masthead membership.
+
+### Theme compatibility
+
+The standalone integration targets the standard OJS 3.5 Editorial Masthead template contract (`mastheadRoles`, `mastheadUsers`, `reviewers`, and related variables). Themes that only style the standard markup should continue to work because the plugin preserves the upstream page structure and CSS class names.
+
+A theme that fully replaces the Editorial Masthead template with custom markup may require compatibility testing. While this plugin is enabled, its masthead template is selected at display time so that profile links work without installation-specific theme edits.
+
+## Portability
+
+The plugin does not contain a journal ID, journal path, hostname, database credentials, or installation-specific user IDs. It resolves the current OJS context at request time and scopes masthead membership to that context.
+
+The profile presentation uses neutral styling and localized interface strings so it does not depend on the colours or language of a particular journal.
+
+Database access uses Laravel's query builder rather than database-specific SQL. Nevertheless, release compatibility should be verified on supported OJS/database combinations before a broader compatibility claim is made.
+
+### OJS 3.5 masthead caveat
+
+The plugin depends on OJS's Editorial Masthead data and page being usable. PKP has fixed upstream Editorial Masthead defects during the OJS 3.5 series, including PostgreSQL-related behaviour and masthead user grouping. Use a current OJS 3.5 maintenance release and test the complete masthead-to-profile flow on the target database before production deployment.
 
 ## Localization
 
 The plugin includes locale resources for English (`en_US`), German (`de_DE`), and Hungarian (`hu`). Contributions for additional OJS locales are welcome.
+
+## AI assistance disclosure
+
+Generative AI assistance has been used in development and maintenance. See `AI_DISCLOSURE.md` for the disclosure and human-review responsibility statement.
+
+PKP's public discussion in 2026 states that it did not yet have a settled general policy for AI contributions. This repository therefore discloses AI assistance proactively and keeps human maintainers responsible for every submitted change and release.
 
 ## Development and releases
 
@@ -55,7 +85,7 @@ See PKP's Plugin Guide and Plugin Gallery documentation before submitting a rele
 
 ## Reporting issues
 
-Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, plugin version, relevant error message or log excerpt, and steps to reproduce the problem.
+Please report reproducible bugs and compatibility problems through this repository's GitHub Issues. Include the OJS version, PHP version, database engine/version, plugin version, active theme, relevant error message or log excerpt, and steps to reproduce the problem.
 
 ## License
 
