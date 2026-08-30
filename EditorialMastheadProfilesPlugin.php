@@ -1,17 +1,22 @@
 <?php
 namespace APP\plugins\generic\editorialMastheadProfiles;
 
+use PKP\config\Config;
 use PKP\plugins\GenericPlugin;
 use PKP\plugins\Hook;
-use PKP\config\Config;
 
 class EditorialMastheadProfilesPlugin extends GenericPlugin
 {
     public function register($category, $path, $mainContextId = null)
     {
         $success = parent::register($category, $path, $mainContextId);
-        if ($success && Config::getVar('general', 'installed')) {
+        if (
+            $success
+            && Config::getVar('general', 'installed')
+            && $this->getEnabled($mainContextId)
+        ) {
             Hook::add('LoadHandler', [$this, 'callbackLoadHandler']);
+            Hook::add('TemplateManager::display', [$this, 'callbackTemplateDisplay']);
         }
         return $success;
     }
@@ -41,5 +46,30 @@ class EditorialMastheadProfilesPlugin extends GenericPlugin
         $sourceFile =& $args[2];
         $sourceFile = $this->getPluginPath() . '/pages/EditorProfileHandler.php';
         return true;
+    }
+
+    /**
+     * Replace OJS's standard Editorial Masthead template with the plugin copy.
+     *
+     * The plugin template intentionally tracks the upstream OJS/PKP template and
+     * only adds profile links around current masthead member names. This makes the
+     * feature work without a journal-specific theme or core-template modification.
+     */
+    public function callbackTemplateDisplay($hookName, $args): bool
+    {
+        $template =& $args[1];
+        if (!is_string($template)) {
+            return false;
+        }
+
+        $normalizedTemplate = preg_replace('/^(tpl:|app:|core:)/', '', $template);
+        $normalizedTemplate = ltrim((string) $normalizedTemplate, '/');
+
+        if ($normalizedTemplate !== 'frontend/pages/editorialMasthead.tpl') {
+            return false;
+        }
+
+        $template = $this->getTemplateResource('editorialMasthead.tpl');
+        return false;
     }
 }
