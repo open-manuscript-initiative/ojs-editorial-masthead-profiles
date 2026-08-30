@@ -29,7 +29,7 @@ The directory name must be `editorialMastheadProfiles`.
 
 ## Usage
 
-Once enabled, the plugin registers the `editorProfile` page handler. A profile URL has the form `/{journalPath}/{locale}/editorProfile/view/{userId}` (routing details may vary with URL rewriting).
+Once enabled, the plugin registers the `editorProfile` page handler. The route uses the current journal context plus the numeric user ID; exact URL appearance depends on the OJS URL and rewrite configuration.
 
 The requested user must belong to the current journal context and must currently be opted in to an editorial-masthead user group. Requests for other users return 404.
 
@@ -44,6 +44,10 @@ The plugin does not contain a journal ID, journal path, hostname, database crede
 The profile presentation uses neutral styling and localized interface strings so it does not depend on the colours or language of a particular journal.
 
 Database access uses Laravel's query builder rather than database-specific SQL. Nevertheless, release compatibility should be verified on supported OJS/database combinations before a broader compatibility claim is made.
+
+### OJS 3.5 masthead caveat
+
+The plugin depends on OJS's Editorial Masthead data and page being usable. PKP has fixed upstream Editorial Masthead defects during the OJS 3.5 series, including PostgreSQL-related behaviour and masthead user grouping. Use a current OJS 3.5 maintenance release and test the complete masthead-to-profile flow on the target database before production deployment.
 
 ## Localization
 
