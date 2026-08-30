@@ -12,7 +12,9 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 - Replaced journal-specific Hungarian template labels with locale keys.
 - Replaced journal-specific colour styling with neutral, theme-compatible presentation.
-- Documented standalone portability and the current masthead-link integration limitation.
+- Added standalone integration with OJS's standard Editorial Masthead page: current masthead member names now link directly to their public profile pages without journal-specific theme edits.
+- Preserved the upstream OJS 3.5 masthead markup, reviewer section, ORCID links, affiliations, editorial-history link, and standard CSS class names in the plugin-owned masthead template.
+- Documented portability and third-party theme compatibility considerations.
 - Documented OJS 3.5 Editorial Masthead compatibility caveats.
 - Added portability checks against installation-specific identifiers and hard-coded template text.
 - Added an AI assistance disclosure and human-review responsibility statement.
