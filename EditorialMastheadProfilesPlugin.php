@@ -14,7 +14,7 @@ class EditorialMastheadProfilesPlugin extends GenericPlugin
 {
     private const EDITORIAL_MASTHEAD_TEMPLATE = 'frontend/pages/editorialMasthead.tpl';
 
-    public function register($category, $path, $mainContextId = null)
+    public function register($category, $path, $mainContextId = null): bool
     {
         $success = parent::register($category, $path, $mainContextId);
         if (
