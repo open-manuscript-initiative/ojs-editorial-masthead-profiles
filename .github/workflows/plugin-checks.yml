@@ -57,6 +57,10 @@ jobs:
           grep -Fq '$handler =& $args[3]' EditorialMastheadProfilesPlugin.php
           grep -Fq "getTemplateResource('editorProfile.tpl')" EditorialMastheadProfilesPlugin.php
           grep -Fq 'display($this->profileTemplateResource)' pages/EditorProfileHandler.php
+          if grep -Fq "getLocalizedData('biography')" templates/editorialMasthead.tpl; then
+            echo 'The full masthead must not display individual biographies.' >&2
+            exit 1
+          fi
           if grep -Fq "define('HANDLER_CLASS'" EditorialMastheadProfilesPlugin.php; then
             echo 'OJS 3.5 rejects HANDLER_CLASS route injection.' >&2
             exit 1

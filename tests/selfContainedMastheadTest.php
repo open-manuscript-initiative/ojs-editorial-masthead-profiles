@@ -267,5 +267,18 @@ namespace {
         'OJS 3.5 Eloquent masthead roles must be keyed by their model primary keys.'
     );
 
+    $mastheadTemplateContents = file_get_contents(dirname(__DIR__) . '/templates/editorialMasthead.tpl');
+    expectSame(
+        false,
+        str_contains($mastheadTemplateContents, "getLocalizedData('biography')"),
+        'The full masthead must not load or display individual biographies.'
+    );
+    $profileTemplateContents = file_get_contents(dirname(__DIR__) . '/templates/editorProfile.tpl');
+    expectSame(
+        true,
+        str_contains($profileTemplateContents, 'profileBiography'),
+        'Individual profile pages must continue to display the public biography.'
+    );
+
     echo "Self-contained masthead checks passed\n";
 }

@@ -70,8 +70,7 @@
 
 .page_editorial_masthead_cards .emc-date,
 .page_editorial_masthead_cards .emc-affiliation,
-.page_editorial_masthead_cards .emc-url,
-.page_editorial_masthead_cards .emc-bio {
+.page_editorial_masthead_cards .emc-url {
 	display: block;
 	margin-top: .25rem;
 	font-size: .92rem;
@@ -85,10 +84,6 @@
 
 .page_editorial_masthead_cards .emc-affiliation {
 	font-weight: 600;
-}
-
-.page_editorial_masthead_cards .emc-bio {
-	margin-top: .6rem;
 }
 
 .page_editorial_masthead_cards .emc-orcid svg {

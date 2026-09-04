@@ -6,6 +6,12 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 ## [Unreleased]
 
+## [1.0.8.3] - 2026-09-04
+
+### Changed
+
+- Removed individual biographies from the complete Editorial Masthead card view; biographies remain available on the linked public profile pages.
+
 ## [1.0.8.2] - 2026-09-04
 
 ### Fixed
