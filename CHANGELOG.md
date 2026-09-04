@@ -6,6 +6,21 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 ## [Unreleased]
 
+## [1.0.8.0] - 2026-09-04
+
+### Added
+
+- Moved the complete responsive editorial-card presentation into the plugin, including profile images, initial fallbacks, biographies, affiliations, websites, verified ORCID links, service dates, and public editor-profile links.
+- Added a plugin-owned masthead stylesheet that is loaded only when the Editorial Masthead page is displayed.
+- Expanded the linked public editor page to show the preferred public name and initials, Public Profile image, biography and homepage, public masthead affiliation, current roles, and verified ORCID without exposing private contact or account fields.
+- Added a responsive, plugin-owned stylesheet for the public editor profile page.
+- Added compatibility handling for OJS 3.5 masthead role collections that are keyed by sequential indexes instead of user-group IDs; the plugin restores the configured role order and rebuilds the native masthead data contract without modifying OJS core files.
+
+### Changed
+
+- Made template detection accept standard OJS resource prefixes and resolved application template paths.
+- Updated installation guidance so legacy manual template overrides can be removed.
+
 ## [1.0.7.0] - 2026-08-30
 
 ### Changed
