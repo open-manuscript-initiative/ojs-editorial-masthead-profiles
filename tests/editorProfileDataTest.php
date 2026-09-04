@@ -38,6 +38,9 @@ namespace PKP\facades {
 namespace PKP\handler {
     class PKPHandler
     {
+        public function __construct()
+        {
+        }
     }
 }
 
@@ -95,7 +98,7 @@ namespace {
         return $reflection->invokeArgs($object, $arguments);
     }
 
-    $handler = new EditorProfileHandler();
+    $handler = new EditorProfileHandler('plugin-resource:editorProfile.tpl');
 
     expectProfileValue(
         'https://orcid.org/0000-0002-1825-0097',

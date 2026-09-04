@@ -55,8 +55,14 @@ jobs:
           grep -Fq "hasVerifiedOrcid" pages/EditorProfileHandler.php
           grep -Fq "styles/editorProfile.css" pages/EditorProfileHandler.php
           grep -Fq '$handler =& $args[3]' EditorialMastheadProfilesPlugin.php
+          grep -Fq "getTemplateResource('editorProfile.tpl')" EditorialMastheadProfilesPlugin.php
+          grep -Fq 'display($this->profileTemplateResource)' pages/EditorProfileHandler.php
           if grep -Fq "define('HANDLER_CLASS'" EditorialMastheadProfilesPlugin.php; then
             echo 'OJS 3.5 rejects HANDLER_CLASS route injection.' >&2
+            exit 1
+          fi
+          if grep -Fq 'getDispatcher()->handle404' pages/EditorProfileHandler.php; then
+            echo 'OJS 3.5 Dispatcher does not expose handle404().' >&2
             exit 1
           fi
           php tests/selfContainedMastheadTest.php

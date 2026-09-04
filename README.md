@@ -37,7 +37,7 @@ The plugin replaces the standard OJS Editorial Masthead frontend template at dis
 
 Selecting a member's name opens a journal-scoped profile page. The page presents the member's preferred public name and avatar initials, profile image, localized biography and homepage from OJS's Public Profile form, together with the public masthead affiliation, current roles, and verified ORCID when those values are available. It deliberately does not expose email addresses, usernames, phone numbers, countries, postal addresses, API credentials, or other contact/account data.
 
-OJS 3.5 requires custom page handlers to be supplied as objects through the `LoadHandler` hook. Version `1.0.8.1` uses this contract; earlier plugin versions that define `HANDLER_CLASS` can return HTTP 500 when a profile link is opened.
+OJS 3.5 requires custom page handlers to be supplied as objects through the `LoadHandler` hook, and plugin templates must be rendered through their registered Smarty resource identifiers. Version `1.0.8.2` follows both contracts and returns missing or ineligible profiles through OJS's standard 404 exception; earlier plugin versions can return HTTP 500 when a profile link is opened.
 
 The plugin also detects the OJS 3.5 masthead role-key mismatch found in affected maintenance releases. When necessary, it restores the journal's configured role order and rebuilds the native `mastheadRoles`/`mastheadUsers` template contract through OJS repositories and relationship models, without patching the application or database schema.
 

@@ -82,11 +82,20 @@ namespace PKP\template {
 namespace PKP\handler {
     class PKPHandler
     {
+        public function __construct()
+        {
+        }
     }
 }
 
 namespace PKP\userGroup\relationships {
     class UserUserGroup
+    {
+    }
+}
+
+namespace Symfony\Component\HttpKernel\Exception {
+    class NotFoundHttpException extends \Exception
     {
     }
 }
@@ -165,6 +174,14 @@ namespace {
         }
     }
 
+    final class FakeInvalidProfileRequest
+    {
+        public function getContext(): object
+        {
+            return new \stdClass();
+        }
+    }
+
     function expectSame($expected, $actual, string $message): void
     {
         if ($expected !== $actual) {
@@ -189,7 +206,20 @@ namespace {
         $profileHandler instanceof \APP\plugins\generic\editorialMastheadProfiles\pages\EditorProfileHandler,
         'OJS 3.5 must receive the profile handler object through LoadHandler argument 4.'
     );
+    $profileTemplateProperty = new ReflectionProperty($profileHandler, 'profileTemplateResource');
+    $profileTemplateProperty->setAccessible(true);
+    expectSame(
+        'plugin-resource:editorProfile.tpl',
+        $profileTemplateProperty->getValue($profileHandler),
+        'The profile handler must receive the plugin-registered Smarty template resource.'
+    );
     expectSame(false, defined('HANDLER_CLASS'), 'OJS 3.5 rejects the deprecated HANDLER_CLASS injection mechanism.');
+    try {
+        $profileHandler->view([0], new FakeInvalidProfileRequest());
+        throw new RuntimeException('An invalid public profile ID must stop with a 404 exception.');
+    } catch (\Symfony\Component\HttpKernel\Exception\NotFoundHttpException $exception) {
+        expectSame(true, true, 'Invalid public profile IDs use the OJS-compatible 404 exception.');
+    }
 
     $user = new FakeUser(12, ['uploadName' => 'profileImage-12.jpg']);
     $templateManager = new FakeTemplateManager([

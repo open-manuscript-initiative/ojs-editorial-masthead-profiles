@@ -51,7 +51,7 @@ class EditorialMastheadProfilesPlugin extends GenericPlugin
 
         require_once __DIR__ . '/pages/EditorProfileHandler.php';
         $handler =& $args[3];
-        $handler = new pages\EditorProfileHandler();
+        $handler = new pages\EditorProfileHandler($this->getTemplateResource('editorProfile.tpl'));
         return true;
     }
 
