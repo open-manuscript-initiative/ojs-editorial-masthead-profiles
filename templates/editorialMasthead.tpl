@@ -21,7 +21,6 @@
 					{assign var=user value=$mastheadUser['user']}
 					{assign var=userId value=$user->getId()}
 					{assign var=affiliation value=$user->getLocalizedData('affiliation')}
-					{assign var=biography value=$user->getLocalizedData('biography')}
 					{assign var=userUrl value=$user->getData('url')}
 					<li class="emc-card">
 						{if !empty($editorialMastheadProfileImageUrls[$userId])}
@@ -48,9 +47,6 @@
 							{/if}
 							{if !empty($userUrl)}
 								<span class="emc-url"><a href="{$userUrl|escape}" target="_blank" rel="noopener noreferrer">{translate key="plugins.generic.editorialMastheadProfiles.website"}</a></span>
-							{/if}
-							{if !empty($biography)}
-								<div class="emc-bio">{$biography|strip_unsafe_html}</div>
 							{/if}
 						</div>
 					</li>

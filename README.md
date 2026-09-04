@@ -33,7 +33,7 @@ Once enabled, the plugin registers the `editorProfile` page handler. The route u
 
 The requested user must belong to the current journal context and must currently be opted in to an editorial-masthead user group. Requests for other users return 404.
 
-The plugin replaces the standard OJS Editorial Masthead frontend template at display time with a plugin-owned responsive card view. It displays profile images, biographies, affiliations, websites, verified ORCID links, service dates, and links from current masthead member names to their public editor profiles. No journal-specific theme or OJS core-template modification is required.
+The plugin replaces the standard OJS Editorial Masthead frontend template at display time with a plugin-owned responsive card view. It displays profile images, affiliations, websites, verified ORCID links, service dates, and links from current masthead member names to their public editor profiles. To keep the complete masthead concise, individual biographies are shown only on the linked profile pages. No journal-specific theme or OJS core-template modification is required.
 
 Selecting a member's name opens a journal-scoped profile page. The page presents the member's preferred public name and avatar initials, profile image, localized biography and homepage from OJS's Public Profile form, together with the public masthead affiliation, current roles, and verified ORCID when those values are available. It deliberately does not expose email addresses, usernames, phone numbers, countries, postal addresses, API credentials, or other contact/account data.
 
