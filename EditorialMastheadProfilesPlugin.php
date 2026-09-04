@@ -41,7 +41,7 @@ class EditorialMastheadProfilesPlugin extends GenericPlugin
     public function callbackLoadHandler($hookName, $args): bool
     {
         $page = $args[0] ?? null;
-        if ($page !== 'editorProfile') {
+        if ($page !== 'editorProfile' || !array_key_exists(3, $args)) {
             return false;
         }
 
@@ -49,9 +49,9 @@ class EditorialMastheadProfilesPlugin extends GenericPlugin
             define('EDITORIAL_MASTHEAD_PROFILES_PLUGIN_PATH', $this->getPluginPath());
         }
 
-        define('HANDLER_CLASS', 'APP\\plugins\\generic\\editorialMastheadProfiles\\pages\\EditorProfileHandler');
-        $sourceFile =& $args[2];
-        $sourceFile = $this->getPluginPath() . '/pages/EditorProfileHandler.php';
+        require_once __DIR__ . '/pages/EditorProfileHandler.php';
+        $handler =& $args[3];
+        $handler = new pages\EditorProfileHandler();
         return true;
     }
 

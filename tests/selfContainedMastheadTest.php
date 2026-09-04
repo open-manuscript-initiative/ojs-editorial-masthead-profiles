@@ -16,6 +16,19 @@ namespace APP\file {
     }
 }
 
+namespace APP\template {
+    class TemplateManager
+    {
+    }
+}
+
+namespace PKP\core {
+    class PKPApplication
+    {
+        public const ROUTE_PAGE = 1;
+    }
+}
+
 namespace PKP\config {
     class Config
     {
@@ -63,6 +76,12 @@ namespace PKP\template {
     class PKPTemplateManager
     {
         public const STYLE_SEQUENCE_LATE = 15;
+    }
+}
+
+namespace PKP\handler {
+    class PKPHandler
+    {
     }
 }
 
@@ -156,6 +175,22 @@ namespace {
     }
 
     $plugin = new EditorialMastheadProfilesPlugin();
+
+    $sourceFile = 'pages/editorProfile/index.php';
+    $profileHandler = null;
+    $loadHandlerArgs = ['editorProfile', 'view', &$sourceFile, &$profileHandler];
+    expectSame(
+        true,
+        $plugin->callbackLoadHandler('LoadHandler', $loadHandlerArgs),
+        'The plugin must handle the editorProfile route.'
+    );
+    expectSame(
+        true,
+        $profileHandler instanceof \APP\plugins\generic\editorialMastheadProfiles\pages\EditorProfileHandler,
+        'OJS 3.5 must receive the profile handler object through LoadHandler argument 4.'
+    );
+    expectSame(false, defined('HANDLER_CLASS'), 'OJS 3.5 rejects the deprecated HANDLER_CLASS injection mechanism.');
+
     $user = new FakeUser(12, ['uploadName' => 'profileImage-12.jpg']);
     $templateManager = new FakeTemplateManager([
         'baseUrl' => 'https://example.test/ojs',
