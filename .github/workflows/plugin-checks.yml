@@ -40,6 +40,30 @@ jobs:
           test -f version.xml
           test -f index.php
           test -f EditorialMastheadProfilesPlugin.php
+          test -f templates/editorialMasthead.tpl
+          test -f templates/editorProfile.tpl
+          test -f styles/editorialMastheadCards.css
+          test -f styles/editorProfile.css
+
+      - name: Verify self-contained masthead cards
+        run: |
+          grep -Fq "getTemplateResource('editorialMasthead.tpl')" EditorialMastheadProfilesPlugin.php
+          grep -Fq "page_editorial_masthead_cards" templates/editorialMasthead.tpl
+          grep -Fq ".page_editorial_masthead_cards" styles/editorialMastheadCards.css
+          grep -Fq "editorialMastheadProfileImageUrls" templates/editorialMasthead.tpl
+          grep -Fq "profileBiography|strip_unsafe_html" templates/editorProfile.tpl
+          grep -Fq "hasVerifiedOrcid" pages/EditorProfileHandler.php
+          grep -Fq "styles/editorProfile.css" pages/EditorProfileHandler.php
+          php tests/selfContainedMastheadTest.php
+          php tests/editorProfileDataTest.php
+
+      - name: Guard public profile data boundary
+        run: |
+          if grep -RInE "profileUser|getData\('(email|phone|mailingAddress|billingAddress|country|apiKey)'\)" \
+              pages templates; then
+            echo 'A private account field or the complete user object was exposed to the public profile template.' >&2
+            exit 1
+          fi
 
       - name: Reject installation-specific identifiers
         run: |

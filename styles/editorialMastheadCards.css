@@ -1,0 +1,106 @@
+.page_editorial_masthead_cards .emc-role-section {
+	margin: 2rem 0 2.5rem;
+}
+
+.page_editorial_masthead_cards .emc-role-title {
+	margin-bottom: 1rem;
+	border-bottom: 1px solid rgba(0, 0, 0, .18);
+	border-color: color-mix(in srgb, currentColor 18%, transparent);
+	padding-bottom: .5rem;
+}
+
+.page_editorial_masthead_cards .emc-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+	gap: 1rem;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.page_editorial_masthead_cards .emc-card {
+	display: flex;
+	gap: 1rem;
+	align-items: flex-start;
+	min-width: 0;
+	padding: 1rem;
+	border: 1px solid rgba(0, 0, 0, .18);
+	border-color: color-mix(in srgb, currentColor 18%, transparent);
+	border-radius: 12px;
+	background: inherit;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+}
+
+.page_editorial_masthead_cards .emc-photo,
+.page_editorial_masthead_cards .emc-photo-fallback {
+	flex: 0 0 88px;
+	width: 88px;
+	height: 88px;
+	border-radius: 50%;
+	object-fit: cover;
+	background: rgba(0, 0, 0, .07);
+	background: color-mix(in srgb, currentColor 7%, transparent);
+}
+
+.page_editorial_masthead_cards .emc-photo-fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 700;
+	font-size: 1.4rem;
+	color: inherit;
+}
+
+.page_editorial_masthead_cards .emc-content {
+	min-width: 0;
+	max-width: 100%;
+}
+
+.page_editorial_masthead_cards .emc-name {
+	margin: 0 0 .25rem;
+	font-size: 1.05rem;
+	line-height: 1.25;
+}
+
+.page_editorial_masthead_cards .emc-name-link {
+	color: inherit;
+	text-decoration-thickness: .08em;
+	text-underline-offset: .16em;
+}
+
+.page_editorial_masthead_cards .emc-date,
+.page_editorial_masthead_cards .emc-affiliation,
+.page_editorial_masthead_cards .emc-url,
+.page_editorial_masthead_cards .emc-bio {
+	display: block;
+	margin-top: .25rem;
+	font-size: .92rem;
+	line-height: 1.4;
+	overflow-wrap: anywhere;
+}
+
+.page_editorial_masthead_cards .emc-date {
+	opacity: .72;
+}
+
+.page_editorial_masthead_cards .emc-affiliation {
+	font-weight: 600;
+}
+
+.page_editorial_masthead_cards .emc-bio {
+	margin-top: .6rem;
+}
+
+.page_editorial_masthead_cards .emc-orcid svg {
+	width: 1em;
+	height: 1em;
+	vertical-align: -.15em;
+}
+
+@media (max-width: 520px) {
+	.page_editorial_masthead_cards .emc-card {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+}
