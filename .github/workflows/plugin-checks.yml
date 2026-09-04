@@ -54,6 +54,11 @@ jobs:
           grep -Fq "profileBiography|strip_unsafe_html" templates/editorProfile.tpl
           grep -Fq "hasVerifiedOrcid" pages/EditorProfileHandler.php
           grep -Fq "styles/editorProfile.css" pages/EditorProfileHandler.php
+          grep -Fq '$handler =& $args[3]' EditorialMastheadProfilesPlugin.php
+          if grep -Fq "define('HANDLER_CLASS'" EditorialMastheadProfilesPlugin.php; then
+            echo 'OJS 3.5 rejects HANDLER_CLASS route injection.' >&2
+            exit 1
+          fi
           php tests/selfContainedMastheadTest.php
           php tests/editorProfileDataTest.php
 

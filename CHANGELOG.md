@@ -6,6 +6,13 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 ## [Unreleased]
 
+## [1.0.8.1] - 2026-09-04
+
+### Fixed
+
+- Replaced the deprecated `HANDLER_CLASS` route injection with the OJS 3.5 `LoadHandler` handler-object contract, preventing an HTTP 500 error when an editorial profile is opened.
+- Added a regression check that fails if the unsupported route-injection mechanism is reintroduced.
+
 ## [1.0.8.0] - 2026-09-04
 
 ### Added
