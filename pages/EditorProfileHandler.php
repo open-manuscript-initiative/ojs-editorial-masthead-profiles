@@ -8,9 +8,15 @@ use PKP\core\PKPApplication;
 use PKP\handler\PKPHandler;
 use PKP\template\PKPTemplateManager;
 use PKP\userGroup\relationships\UserUserGroup;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EditorProfileHandler extends PKPHandler
 {
+    public function __construct(private string $profileTemplateResource)
+    {
+        parent::__construct();
+    }
+
     public function index($args, $request)
     {
         return $this->view($args, $request);
@@ -20,21 +26,21 @@ class EditorProfileHandler extends PKPHandler
     {
         $context = $request->getContext();
         if (!$context) {
-            return $request->getDispatcher()->handle404();
+            throw new NotFoundHttpException();
         }
 
         $userId = isset($args[0]) ? (int) $args[0] : 0;
         if ($userId <= 0) {
-            return $request->getDispatcher()->handle404();
+            throw new NotFoundHttpException();
         }
 
         $user = Repo::user()->get($userId);
         if (!$user) {
-            return $request->getDispatcher()->handle404();
+            throw new NotFoundHttpException();
         }
 
         if (!$this->isCurrentMastheadUser($userId, (int) $context->getId())) {
-            return $request->getDispatcher()->handle404();
+            throw new NotFoundHttpException();
         }
 
         $roles = $this->getMastheadRoleNames($userId, (int) $context->getId(), $context);
@@ -64,7 +70,7 @@ class EditorProfileHandler extends PKPHandler
             ['priority' => PKPTemplateManager::STYLE_SEQUENCE_LATE]
         );
 
-        return $templateMgr->display(EDITORIAL_MASTHEAD_PROFILES_PLUGIN_PATH . '/templates/editorProfile.tpl');
+        return $templateMgr->display($this->profileTemplateResource);
     }
 
     private function isCurrentMastheadUser(int $userId, int $contextId): bool

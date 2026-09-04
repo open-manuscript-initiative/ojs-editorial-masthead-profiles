@@ -6,6 +6,13 @@ The format is based on Keep a Changelog, and releases use the version declared i
 
 ## [Unreleased]
 
+## [1.0.8.2] - 2026-09-04
+
+### Fixed
+
+- Passed the profile template to Smarty through the plugin's registered template-resource identifier, preventing OJS from incorrectly looking for it below `lib/pkp/templates` and returning HTTP 500.
+- Replaced calls to the unavailable OJS 3.5 `Dispatcher::handle404()` method with `NotFoundHttpException`, so missing or ineligible profiles return HTTP 404 instead of HTTP 500.
+
 ## [1.0.8.1] - 2026-09-04
 
 ### Fixed
